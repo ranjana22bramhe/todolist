@@ -1,0 +1,520 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>To-Do List</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Comic+Neue:wght@400;700&display=swap">
+    <style>
+        body {
+            font-family: 'Comic Neue', cursive;
+            display: flex;
+            background-image: url('https://www.hdwallpapers.in/download/tree_hills_pond_reflection_dark_blue_sky_background_4k_hd_dark_background-HD.jpg');
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            color: #333;
+            background-size: cover;
+            background-repeat: no-repeat;
+        }
+
+        .task-container {
+            max-width: 500px;
+            width: 100%;
+            padding: 20px;
+            background: rgba(60, 60, 60, 0.8);
+            /* Semi-transparent background color */
+            border-radius: 15px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 1);
+            text-align: center;
+            margin-bottom: 30px;
+            border: 3px solid transparent;
+            border-radius: 15px;
+            position: relative;
+            background-clip: padding-box;
+            /* Ensure border is visible */
+            animation: rainbowBorder 5s linear infinite;
+        }
+
+        @keyframes rainbowBorder {
+            0% {
+                border-color: rgb(116, 33, 33);
+            }
+
+            14% {
+                border-color: orange;
+            }
+
+            28% {
+                border-color: rgb(199, 199, 52);
+            }
+
+            42% {
+                border-color: rgb(80, 196, 80);
+            }
+
+            57% {
+                border-color: rgb(123, 123, 199);
+            }
+
+            71% {
+                border-color: rgb(92, 72, 107);
+            }
+
+            85% {
+                border-color: violet;
+            }
+
+            100% {
+                border-color: rgb(177, 97, 97);
+            }
+        }
+
+        h2 {
+            color: #d4dee9;
+            font-size: 28px;
+            margin-bottom: 20px;
+            font-family: 'Comic Neue', cursive;
+            font-weight: 700;
+        }
+
+        .user-name {
+            color: #e4ce85;
+            font-weight: 700;
+        }
+
+        .input-container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 10px;
+            margin-bottom: 20px;
+        }
+
+        input {
+            flex: 1;
+            padding: 15px;
+            border-radius: 8px;
+            border: 1px solid #454a4e;
+            font-size: 18px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
+            max-width: 300px;
+        }
+
+        .icon-button {
+            padding: 15px;
+            background-color: #252627;
+            color: white;
+            border: none;
+            border-radius: 50%;
+            cursor: pointer;
+            font-size: 24px;
+            transition: background-color 0.3s, transform 0.2s;
+        }
+
+        .icon-button:hover {
+            background-color: #565758;
+            transform: scale(1.0);
+        }
+
+        ul {
+            list-style-type: none;
+            padding: 0;
+            margin: 20px 0;
+        }
+
+        ul li {
+            background-color: #2b2828;
+            padding: 12px;
+            margin: 5px 0;
+            border-radius: 8px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.2);
+            font-size: 18px;
+            transition: transform 0.3s, background-color 0.3s;
+            color: #f0f0f0;
+            /* Light text color for better visibility */
+            text-shadow: 5px 5px 5px rgba(0, 0, 0, 0.3);
+            /* Add subtle shadow for text */
+        }
+
+        ul li:hover {
+            background-color: #3a3333;
+            transform: scale(1.02);
+        }
+
+        ul li .remove-icon {
+            color: #cf525f;
+            font-size: 22px;
+            cursor: pointer;
+            background-color: #2b2828;
+        }
+
+        ul li .remove-icon:hover {
+            color: #bd1a2a;
+        }
+
+        .cartoon-remove-icon {
+            font-size: 22px;
+            color: #ea0000;
+            transition: transform 0.3s;
+            background-color: #2f2222;
+        }
+
+        .cartoon-remove-icon:hover {
+            transform: rotate(15deg) scale(1.3);
+            color: #e30303;
+        }
+
+        .extra-buttons {
+            display: flex;
+            flex-direction: row;
+            gap: 400px;
+            margin-top: 20px;
+            justify-content: space-around;
+        }
+
+        .extra-buttons a {
+            text-decoration: none;
+        }
+
+        .extra-buttons .icon-button {
+            background-color: #bb6809;
+            width: 60px;
+            height: 60px;
+            font-size: 28px;
+            justify-content: space-between;
+        }
+
+        .extra-buttons .icon-button:hover {
+            background-color: #ff8800;
+        }
+
+        @keyframes popOut {
+            0% {
+                transform: scale(1);
+                opacity: 1;
+            }
+
+            50% {
+                transform: scale(1.2);
+                opacity: 0.6;
+            }
+
+            100% {
+                transform: scale(0.5);
+                opacity: 0;
+            }
+        }
+
+        .pop-out {
+            animation: popOut 0.6s forwards;
+        }
+
+        @keyframes popOut {
+            0% {
+                transform: scale(1);
+                opacity: 1;
+            }
+
+            50% {
+                transform: scale(1.2);
+                opacity: 0.6;
+            }
+
+            100% {
+                transform: scale(0.5);
+                opacity: 0;
+            }
+        }
+
+        .pop-out {
+            animation: popOut 0.6s forwards;
+        }
+
+        @media (max-width: 1024px) {
+            body {
+                background-size: cover;
+                padding: 10px;
+            }
+
+            .task-container {
+                max-width: 90%;
+                padding: 15px;
+            }
+
+            h2 {
+                font-size: 24px;
+            }
+
+            input {
+                font-size: 16px;
+            }
+
+            ul li {
+                font-size: 16px;
+                padding: 10px;
+            }
+
+            .extra-buttons .icon-button {
+                height: 50px;
+                font-size: 24px;
+            }
+        }
+
+        @media (max-width: 768px) {
+            body {
+                background-size: cover;
+                padding: 10px;
+            }
+
+            .task-container {
+                max-width: 80%;
+                padding: 15px;
+            }
+
+            h2 {
+                font-size: 24px;
+            }
+
+            input {
+                font-size: 16px;
+            }
+
+            ul li {
+                font-size: 16px;
+                padding: 10px;
+            }
+
+            .extra-buttons .icon-button {
+                height: 50px;
+                font-size: 24px;
+            }
+        }
+
+        @media (max-width: 600px) {
+            .input-container {
+                flex-direction: column;
+            }
+
+            .icon-button {
+                width: 50px;
+                height: 50px;
+                font-size: 20px;
+            }
+
+            .extra-buttons .icon-button {
+                width: 50px;
+                height: 50px;
+                font-size: 22px;
+            }
+        }
+
+        @media (max-width: 450px) {
+            body {
+                background-size: cover;
+                padding: 10px;
+            }
+
+            .input-container {
+                flex-direction: column;
+                width: 230px;
+                padding-left: 20px;
+                position: center;
+            }
+
+            .task-container {
+                width: 100%;
+                padding: 10px;
+                box-sizing: border-box;
+            }
+
+            input {
+                width: 100%;
+                max-width: none;
+            }
+
+            .icon-button {
+                width: 50px;
+                height: 50px;
+                font-size: 20px;
+                margin-top: 10px;
+            }
+
+            .extra-buttons {
+                flex-direction: column;
+                gap: 10px;
+                width: 50px;
+                height: 50px;
+            }
+
+            .extra-buttons a {
+                width: 100%;
+            }
+
+            .extra-buttons .icon-button {
+                width: 100%;
+                font-size: 22px;
+            }
+        }
+
+        @media (max-width: 375px) {
+            body {
+                padding: 5px;
+                background-size: cover;
+            }
+
+            .task-container {
+                padding: 10px;
+                width: 100%;
+                max-width: 300px;
+            }
+
+            h2 {
+                font-size: 22px;
+            }
+
+            input {
+                font-size: 14px;
+                padding: 10px;
+            }
+
+            ul li {
+                font-size: 14px;
+                padding: 8px;
+            }
+
+            .input-container {
+                flex-direction: column;
+                width: 235px;
+
+            }
+
+            .icon-button {
+                width: 45px;
+                height: 45px;
+                font-size: 18px;
+                margin-top: 10px;
+            }
+
+            .extra-buttons {
+                flex-direction: column;
+                gap: 8px;
+            }
+
+            .extra-buttons .icon-button {
+                width: 45px;
+                height: 45px;
+                font-size: 20px;
+            }
+        }
+
+        .user-name {
+            text-decoration: none;
+        }
+
+        .user-name a {
+            color: #e4ce85;
+            text-decoration: none;
+        }
+
+        .user-name a:hover {
+            text-decoration: underline;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="task-container">
+        <a href="index1.html"></a>
+        <h2>Welcome,<span id="userName" class="user-name">User</span></h2></a>
+        <div class="input-container">
+            <input type="text" id="taskInput" placeholder="Add a new task">
+            <button class="icon-button" onclick="addTask()"><i class="fas fa-plus"></i></button>
+        </div>
+        <ul id="taskList"></ul>
+    </div>
+
+    <div class="extra-buttons">
+        <a href="index3.html"><button class="icon-button"><i class="fas fa-sticky-note"></i></button></a>
+        <a href="index4.html"><button class="icon-button"><i class="fa fa-calendar" aria-hidden="true"></i></button></a>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            loadUserName();
+            loadTasks();
+        });
+
+        function getParameterByName(name) {
+            const regex = `new RegExp([?&]${name}=([^&]*))`;
+            const results = regex.exec(window.location.search);
+            return results === null ? '' : decodeURIComponent(results[1].replace(/\+/g, ' '));
+        }
+
+        function loadUserName() {
+            const userName = getParameterByName('username');
+            if (userName) {
+                document.getElementById('userName').textContent = userName;
+                // Clear local storage if a new username is set
+                if (!localStorage.getItem('userNameSet') || localStorage.getItem('userNameSet') !== userName) {
+                    localStorage.removeItem('tasks'); // Clear existing tasks
+                    localStorage.setItem('userNameSet', userName); // Update the username in local storage
+                    location.reload(); // Refresh the page
+                }
+            } else {
+                document.getElementById('userName').textContent = 'User';
+            }
+        }
+
+        function loadTasks() {
+            const tasks = JSON.parse(localStorage.getItem('tasks')) || [];
+            const taskListElement = document.getElementById('taskList');
+            taskListElement.innerHTML = '';
+
+            tasks.forEach((task, index) => {
+                if (!task.deleted) {
+                    const taskDiv = document.createElement('li');
+                    taskDiv.innerHTML = `
+                <span>${task.text}</span>
+                <button class="cartoon-remove-icon" onclick="markAsDeleted(${index})"><i class="fas fa-trash-alt"></i></button>
+            `;
+                    taskListElement.appendChild(taskDiv);
+                }
+            });
+        }
+
+        function addTask() {
+            const taskInput = document.getElementById('taskInput').value.trim();
+            if (taskInput) {
+                const tasks = JSON.parse(localStorage.getItem('tasks')) || [];
+                tasks.push({ text: taskInput, deleted: false });
+                localStorage.setItem('tasks', JSON.stringify(tasks));
+                document.getElementById('taskInput').value = '';
+                loadTasks();
+            }
+        }
+
+        function markAsDeleted(index) {
+            const tasks = JSON.parse(localStorage.getItem('tasks')) || [];
+            tasks[index].deleted = true;
+            localStorage.setItem('tasks', JSON.stringify(tasks));
+            loadTasks();
+        }
+
+        document.getElementById('taskInput').addEventListener('keydown', function (event) {
+            if (event.key === 'Enter') {
+                event.preventDefault(); // Prevent form submission if inside a form
+                addTask();
+            }
+        });
+    </script>
+</body>
+
+</html>

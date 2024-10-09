@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>User Page</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Comic+Neue:wght@400;700&display=swap');
+
+        body {
+            font-family: 'Comic Neue', cursive;
+            background-image:url('https://www.hdwallpapers.in/download/tree_hills_pond_reflection_dark_blue_sky_background_4k_hd_dark_background-HD.jpg');
+            justify-content: center;
+            background-repeat: no-repeat;
+            background-size: cover;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            display: grid;
+            background-attachment: fixed;
+        }
+        .container {
+            background:rgba(0, 0, 0, 0.8); 
+            padding: 20px;
+            border-radius: 15px; 
+            box-shadow: 0 0 15px rgba(0, 0, 0, 0.7);
+            max-width: 500px;
+            text-align: center;
+            position: relative;
+            top:50%;
+        }
+        .welcome-message {
+            font-size: 24px;
+            margin-bottom: 20px;
+            background: conic-gradient(from 90deg, #55bf59, #f04b3f, #2a97f0, #ffeb3b);
+            -webkit-background-clip: text;
+            font-weight:700;
+            color: transparent;
+            font-family: 'Comic Neue';
+        }
+        .input-box {
+            margin-bottom: 20px;
+            padding: 10px;
+            border: 2px solid #4caf50; 
+            border-radius: 10px; 
+            font-size: 16px;
+            background-color: #333; 
+        }
+        .input-box input {
+            border: none;
+            outline: none;
+            width: calc(100% - 20px);
+            font-size: 16px;
+            padding: 5px;
+            background-color: transparent;
+            color: #f5f5f5;
+        }
+        .button-container {
+            display: flex;
+            justify-content: space-between;
+        }
+        .button {
+            padding: 10px 20px;
+            border: none;
+            border-radius: 15px; 
+            color: white;
+            cursor: pointer;
+            font-size: 16px;
+            transition: background-color 0.3s, transform 0.3s;
+        }
+        .skip-button {
+            background-color: #e91e63; 
+        }
+        .skip-button:hover {
+            background-color: #c2185b;
+            transform: scale(1.05);
+        }
+        .done-button {
+            background-color: #2196f3; 
+        }
+        .done-button:hover {
+            background-color: #1976d2;
+            transform: scale(1.05);
+        }
+        
+        .to-do-instruction  {
+        margin-top: 20px;
+        font-size: px;
+        color: #dffbfa ;
+        }
+
+        .to-do-instruction a{
+            color:#e7f1f8;
+            text-decoration: none;
+            font-weight: bold;
+        }
+        .to-do-instruction a:hover {
+            text-decoration: underline;
+        }
+    </style>
+    <script>
+        function handleDone() {
+            const userName = document.getElementById('user-name').value;
+            if (userName) {
+                window.location.href = `index2.html?username=${encodeURIComponent(userName)}`;
+            }
+        }
+    </script>
+</head>
+<body>
+    
+    <div class="container">
+        <div class="welcome-message">
+            Write your name for To-Do list! 😊
+        </div>
+        <div class="input-box">
+            <input type="text" id="user-name" placeholder="Enter your name here">
+        </div>
+        <div class="button-container">
+            <button class="button skip-button" onclick="window.location.href='index2.html'">Skip</button>
+            <button class="button done-button" onclick="handleDone()">Done</button>
+        </div>
+    </div>
+    <div class="to-do-instruction">
+    <a href="index1A.html"><p>TO-DO List Instructions</p></a>
+    </div>
+   
+</body>
+</html>

@@ -1,0 +1,460 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Completed Tasks</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Comic+Neue:wght@400;700&display=swap">
+    <style>
+ body {
+            font-family: 'Comic Neue', cursive;
+            display: flex;
+            background-image: url('https://www.hdwallpapers.in/download/tree_hills_pond_reflection_dark_blue_sky_background_4k_hd_dark_background-HD.jpg');
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            color: #333;
+            background-size: cover;
+            background-repeat: no-repeat;
+        }
+
+        .task-container {
+            max-width: 600px;
+            width: 100%;
+            padding: 20px;
+            background: rgba(60, 60, 60, 0.8);
+            border-radius: 15px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 1);
+            text-align: center;
+            margin-bottom: 30px;
+            border: 3px solid transparent;
+            background-clip: padding-box;
+            animation: rainbowBorder 5s linear infinite;
+        }
+
+        @keyframes rainbowBorder {
+            0% {
+                border-color: rgb(116, 33, 33);
+            }
+
+            14% {
+                border-color: orange;
+            }
+
+            28% {
+                border-color: rgb(199, 199, 52);
+            }
+
+            42% {
+                border-color: rgb(80, 196, 80);
+            }
+
+            57% {
+                border-color: rgb(123, 123, 199);
+            }
+
+            71% {
+                border-color: rgb(92, 72, 107);
+            }
+
+            85% {
+                border-color: violet;
+            }
+
+            100% {
+                border-color: rgb(177, 97, 97);
+            }
+        }
+
+        h1 {
+            color: #d4dee9;
+            font-size: 28px;
+            margin-bottom: 10px;
+            font-family: 'Comic Neue', cursive;
+            font-weight: 700;
+        }
+
+        ul {
+            list-style-type: none;
+            padding: 0;
+            margin: 20px 0;
+            max-height: 500px;
+            overflow-y: auto;
+            overflow-x: hidden;
+        }
+
+        ul li {
+            background-color: #2b2828;
+            padding: 12px;
+            margin: 5px 0;
+            border-radius: 8px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.2);
+            font-size: 18px;
+            transition: transform 0.3s, background-color 0.3s;
+            color: #f0f0f0;
+            text-shadow: 5px 5px 5px rgba(0, 0, 0, 0.3);
+        }
+
+        ul li:hover {
+            background-color: #3a3333;
+            transform: scale(1.02);
+        }
+
+        ul li.completed span {
+            color: #888;
+            text-decoration: line-through;
+        }
+
+        @keyframes popOut {
+            0% {
+                transform: scale(1);
+            }
+            50% {
+                transform: scale(1.2);
+            }
+            100% {
+                transform: scale(1);
+            }
+        }
+
+         ul li .delete-sticker, ul li .important-sticker {
+            animation: popOut 0.5s ease;
+        }
+
+        ul li .delete-sticker {
+            color: #cf525f;
+            font-size: 22px;
+            cursor: pointer;
+            background-color: #2b2828;
+            transition: transform 0.3s color0.3s;
+        }
+ul li .delete-sticker:hover {
+    color: #bd1a2a;
+    transform: rotate(360deg) scale(1.3);
+    transition: transform 0.3s, color 0.3s;
+}
+
+        ul li .important-sticker {
+            color: #d5a11f;
+            font-size: 22px;
+            cursor: pointer;
+            background-color: #2b2828;
+            transition: transform 0.3s;
+        }
+
+        ul li .important-sticker:hover {
+            color: #f9db19;
+            transform: rotate(15deg) scale(1.3);
+        }
+
+        .extra-buttons {
+            display: flex;
+            flex-direction: row;
+            gap: 400px;
+            margin-top: 20px;
+            justify-content: space-around;
+            border-radius: 50%;
+        }
+
+        .extra-buttons a {
+            text-decoration: none;
+        }
+
+        .extra-buttons .icon-button {
+            background-color: #bb6809;
+            width: 60px;
+            height: 60px;
+            font-size: 26px;
+            border-radius: 50%;
+        }
+
+        .extra-buttons .icon-button:hover {
+            background-color: #ff8800;
+        }
+
+        @media (max-width: 600px) {
+            .extra-buttons {
+                flex-direction: column;
+            }
+
+            .extra-buttons .icon-button {
+                width: 50px;
+                height: 50px;
+                font-size: 20px;
+            }
+        }
+
+        .mark-button {
+            font-size: 22px;
+            cursor: pointer;
+            background-color: #444;
+            border: none;
+            transition: transform 0.3s;
+            padding: 10px;
+            border-radius: 50%;
+            margin-left: 5px;
+        }
+
+        .filter-buttons {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            margin-top: 10px;
+            margin-bottom: 50px;
+        }
+
+        .filter-buttons button {
+            background-color: #7e877f;
+            border: none;
+            color: white;
+            padding: 10px 20px;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+
+        .filter-buttons button:hover {
+            background-color: #b50889;
+        }
+
+        .confirm-alert {
+            display: none;
+            background: rgba(255, 0, 0, 0.8);
+            color: white;
+            padding: 20px;
+            border-radius: 10px;
+            text-align: center;
+            position: fixed;
+            top: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+            z-index: 1000;
+        }
+
+        .confirm-buttons {
+            display: flex;
+            justify-content: center;
+            gap: 10px;
+            margin-top: 10px;
+        }
+
+        .confirm-buttons button {
+            background-color: #ff0000;
+            border: none;
+            color: white;
+            padding: 10px;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+
+        .confirm-buttons button:hover {
+            background-color: #ffffff;
+            color: #2f2222;
+        }
+
+        ::-webkit-scrollbar {
+            width: 9px;
+        }
+
+        ::-webkit-scrollbar-thumb {
+            background-color: #686868;
+            border-radius: 9px;
+        }
+
+        ::-webkit-scrollbar-track {
+            background-color: #4c4c4c;
+        }
+
+        .time-date-container {
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background-color: #333;
+            color: white;
+            padding: 20px;
+            border-radius: 10px;
+            font-family: 'Comic Neue', cursive;
+            max-width: 300px;
+            width: 100%;
+            display: none;
+            flex-direction: column;
+            gap: 10px;
+        }
+
+        .close-button {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            background-color: red;
+            color: white;
+            border: none;
+            border-radius: 50%;
+            width: 30px;
+            height: 30px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            font-size: 18px;
+        }
+
+        .set-reminder-button {
+            background-color: #F18F01;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            padding: 10px 20px;
+            cursor: pointer;
+            align-self: center;
+        }
+
+        .set-reminder-button:hover {
+            background-color: #db7d00;
+        }
+
+
+    </style>
+</head>
+
+<body>
+    <div class="filter-buttons">
+        <button onclick="filterTasks('all')">All Tasks</button>
+        <button onclick="filterTasks('completed')">Completed</button>
+        <button onclick="filterTasks('uncompleted')">pending</button>
+    </div>
+    <div class="task-container">
+        <h1>Notes</h1>
+        <ul id="taskList"></ul>
+    </div>
+    <div class="extra-buttons">
+        <a href="index2.html"><button class="icon-button"><i class="fas fa-plus"></i></button></a>
+        <a href="index4.html"><button class="icon-button"><i class="fas fa-calendar-plus"></i></button></a>
+    </div>
+
+    <div class="confirm-alert" id="confirmAlert">
+        <p>Are you sure you want to delete this task?</p>
+        <div class="confirm-buttons">
+            <button onclick="confirmDelete(true)">Yes</button>
+            <button onclick="confirmDelete(false)">No</button>
+        </div>
+    </div>
+
+    <div class="time-date-container" id="timeDateContainer">
+        <button id="close" class="close-button" onclick="closeReminderContainer()"><i class="fas fa-times"></i></button>
+        <label for="reminder-date">Set Reminder Date:</label>
+        <input type="date" id="reminder-date">
+        <label for="reminder-time">Set Reminder Time:</label>
+        <input type="time" id="reminder-time">
+        <button onclick="setReminder()">Set Reminder</button>
+    </div>
+
+    <script>
+        let tasks = JSON.parse(localStorage.getItem('tasks')) || [];
+        let taskIdToMark = null;
+
+        
+        function loadTasks() {
+    const taskList = document.getElementById('taskList');
+    taskList.innerHTML = '';
+    tasks.forEach((task, index) => {
+        const li = document.createElement('li');
+        li.className = task.completed ? 'completed' : '';
+        li.innerHTML = `
+            <input type="checkbox" ${task.completed ? 'checked' : ''} onchange="toggleTaskCompletion(${index})">
+            <span>${task.text}</span>
+            <div>
+                <span class="important-sticker" onclick="showReminderContainer(${index})"><i class="fas fa-calendar-day"></i></span>
+                <span class="delete-sticker" onclick="showConfirmAlert(${index})"><i class="fas fa-trash-alt"></i></span>
+            </div>
+        `;
+        taskList.appendChild(li);
+    });
+}
+
+
+        function toggleTaskCompletion(index) {
+            tasks[index].completed = !tasks[index].completed;
+            localStorage.setItem('tasks', JSON.stringify(tasks));
+            loadTasks();
+        }
+
+        function showConfirmAlert(index) {
+            document.getElementById('confirmAlert').style.display = 'block';
+            taskIdToMark = index;
+        }
+
+        function confirmDelete(confirmed) {
+            if (confirmed) {
+                tasks.splice(taskIdToMark, 1);
+                localStorage.setItem('tasks', JSON.stringify(tasks));
+                loadTasks();
+            }
+            document.getElementById('confirmAlert').style.display = 'none';
+        }
+
+        function showReminderContainer(index) {
+            taskIdToMark = index;
+            document.getElementById('timeDateContainer').style.display = 'flex';
+        }
+
+        function closeReminderContainer() {
+            document.getElementById('timeDateContainer').style.display = 'none';
+        }
+
+        function setReminder() {
+            const date = document.getElementById('reminder-date').value;
+            const time = document.getElementById('reminder-time').value;
+            if (date && time) {
+                const reminder = `${date} ${time}`;
+                tasks[taskIdToMark].reminder = reminder;
+                localStorage.setItem('tasks', JSON.stringify(tasks));
+                loadTasks(); 
+                closeReminderContainer();
+            } else {
+                alert('Please set both date and time.');
+            }
+        }
+
+        function formatReminder(reminder) {
+            const [date, time] = reminder.split(' ');
+            const [hours, minutes] = time.split(':').map(Number);
+            const ampm = hours >= 12 ? 'PM' : 'AM';
+            const adjustedHours = hours % 12 || 12;
+            return `${date} ${adjustedHours}:${minutes < 10 ? '0' + minutes : minutes} ${ampm}`;
+        }
+
+
+
+        function filterTasks(filter) {
+            const taskList = document.getElementById('taskList');
+            taskList.innerHTML = '';
+            tasks
+                .filter(task => filter === 'all' || (filter === 'completed' && task.completed) || (filter === 'uncompleted' && !task.completed))
+                .forEach((task, index) => {
+                    const li = document.createElement('li');
+                    li.innerHTML = `
+                       
+                    <input type="checkbox" ${task.completed ? 'checked' : ''} onchange="toggleTaskCompletion(${index})">
+                    <span>${task.text}</span>
+                    <div>
+                        <span class="important-sticker" onclick="showReminderContainer(${index})"><i class="fas fa-calendar-day"></i></span>
+                        <span class="delete-sticker" onclick="showConfirmAlert(${index})"><i class="fas fa-trash-alt"></i></span>
+                    </div>
+                `;
+                    taskList.appendChild(li);
+                });
+        }
+
+        document.addEventListener('DOMContentLoaded', loadTasks);
+    </script>
+</body>
+</html>

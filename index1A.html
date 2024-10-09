@@ -1,0 +1,285 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Privacy</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            background: #f0f0f0;
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-family: "Montserrat", sans-serif;
+            background: url("bg.jpeg") no-repeat center center fixed;
+            background-size: cover;
+            flex-direction: column;
+            overflow: hidden; 
+            background-image: url('https://www.hdwallpapers.in/download/tree_hills_pond_reflection_dark_blue_sky_background_4k_hd_dark_background-HD.jpg');
+        }
+
+        .instructions-container {
+            width: 100%;
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        .instructions-heading {
+            font-size: 1.5em;
+            font-weight: bold;
+            color: #fff;
+        }
+
+        .container {
+            width: 100%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 1em;
+            position: relative;
+        }
+
+        .terms-box {
+            max-width: 70%;
+            width: 800px;
+            background-color: rgba(51, 47, 47, 0.8); 
+            color: #fff;
+            padding: 2em;
+            border-radius: 10px;
+            border: 1px solid #333;
+            box-shadow: 8px 8px 20px rgba(43, 41, 41, 0.6);
+            overflow: hidden;
+            position: relative;
+        }
+
+        .cut-btn {
+            position: absolute;
+            top: 10px;
+            right: 40px;
+            background: #d13639;
+            color: #fff;
+            border: none;
+            border-radius: 50%;
+            width: 2em;
+            height: 2em;
+            font-size: 1em;
+            line-height: 2em;
+            text-align: center;
+            cursor: pointer;
+        }
+
+        .terms-text {
+            padding: 0 1em;
+            height: 500px; 
+            overflow-y: auto;
+            font-size: 0.875em;
+            font-weight: 500;
+            color: #f1f1f1;
+        }
+
+        .terms-text::-webkit-scrollbar {
+            width: 6px;
+            background-color: #5c5353;
+        }
+
+        .terms-text::-webkit-scrollbar-thumb {
+            background-color: #d13639;
+            border-radius: 3px;
+        }
+
+        .terms-text h1 {
+            text-transform: uppercase;
+            padding-bottom: 1em;
+        }
+
+        .terms-box h4 span {
+            color: #d13639;
+        }
+
+        h1, p {
+            margin: 0;
+            padding: 0.5em;
+        }
+
+        .arrow-icon-container {
+            position: absolute;
+            bottom: 10px;
+            right: 10px;
+            background: #333;
+            border-radius: 50%;
+            padding: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5);
+            transition: background 0.3s, box-shadow 0.3s;
+        }
+
+        .arrow-icon-container:hover {
+            background: #d13639;
+            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.7);
+        }
+
+        .arrow-icon {
+            font-size: 24px;
+            color: #fff;
+            cursor: pointer;
+            transition: color 0.3s;
+        }
+
+        .arrow-icon-container:hover .arrow-icon {
+            color: #fff;
+        }
+
+        ul {
+            list-style: none;
+            padding: 0;
+        }
+
+        ul li {
+            padding: 5px 0;
+            display: flex;
+            align-items: center;
+            color: #fff;
+        }
+
+        ul li .icon {
+            margin-right: 10px;
+            color: #d13639; /* Icon color */
+        }
+
+        @media (max-width: 1024px) {
+            .terms-box {
+                max-width: 80%;
+                width: 650px;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .terms-box {
+                max-width: 90%;
+                width: 550px;
+                padding: 1.5em;
+            }
+
+            .cut-btn {
+                width: 1.5em;
+                height: 1.5em;
+                font-size: 0.75em;
+                line-height: 1.5em;
+            }
+
+            .terms-text {
+                font-size: 0.75em;
+            }
+
+            .arrow-icon-container {
+                padding: 8px;
+            }
+
+            .arrow-icon {
+                font-size: 20px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .terms-box {
+                max-width: 95%;
+                width: 400px;
+                padding: 1em;
+            }
+
+            .cut-btn {
+                width: 1.2em;
+                height: 1.2em;
+                font-size: 0.6em;
+                line-height: 1.2em;
+            }
+
+            .terms-text {
+                font-size: 0.7em;
+                height: auto;
+                max-height: 300px;
+            }
+
+            .arrow-icon-container {
+                padding: 6px;
+            }
+
+            .arrow-icon {
+                font-size: 18px;
+            }
+        }
+
+        @media (max-width: 360px) {
+            .terms-box {
+                max-width: 100%;
+                width: 320px;
+                padding: 0.8em;
+            }
+
+            .cut-btn {
+                width: 1em;
+                height: 1em;
+                font-size: 0.5em;
+                line-height: 1em;
+            }
+
+            .terms-text {
+                font-size: 0.65em;
+            }
+
+            .arrow-icon-container {
+                padding: 4px;
+            }
+
+            .arrow-icon {
+                font-size: 16px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="instructions-container">
+
+    </div>
+
+    <div class="container">
+        <div class="terms-box">
+            <a href="index2.html"><button class="cut-btn">x</button></a>
+            <div class="terms-text">
+                <h1>Instructions</h1>
+                <p>*  Click on the "Add Task" button or input field to create a new to-do item.</p>
+                <p>*  Type in your task description and press Enter or click "Add."</p>
+                <p>*  To mark a task as complete, click the checkbox next to the task.</p>
+                <p>*  Completed tasks will be displayed with a strikethrough effect.</p>
+                <p>*  Click on the task text to edit its content.</p>
+                <p>*  Make changes directly in the text field and press Enter to save.</p>
+                <p>*  Click the "Remove" or "Delete" button next to a task to remove it from the list.</p>
+                <p>*  Use the "Important" checkbox to mark tasks as high priority.</p>
+                <p>*  If you accidentally remove or complete a task, use the "Undo" button to restore it.</p>
+                <p>*  Mark tasks with a reminder checkbox to set a due date and time.</p>
+                <p>*  Use the navigation icons or buttons to switch between different sections of the to-do list, such as "Today," "Upcoming," and "Completed."</p>
+                <h1>Symbols</h1>
+                <ul>
+                    <li><i class="fas fa-plus icon"></i> Add a new task to the list.</li>
+                    <li><i class="fas fa-undo icon"></i> Undo your last action.</li>
+                    <li><i class="fas fa-trash icon"></i> Delete a task from the list.</li>
+                    <li><i class="fas fa-sticky-note icon"></i> Add or view details and notes for a task.</li>
+                    <li><i class="fas fa-bell icon"></i> Set a reminder for a task.</li>
+                </ul>
+                <h1>Benefits</h1>
+                <p>*  A to-do list helps organize tasks in a clear and manageable way, reducing the feeling of being overwhelmed.</p>
+                <p>*  By listing tasks, you can prioritize and focus on completing them one by one, boosting productivity.</p>
+                <p>*  A to-do list allows you to allocate time effectively, ensuring that important tasks are completed within deadlines.</p>
+                <p>*  Writing down tasks helps to clear your mind, reducing stress and anxiety about forgetting something important.</p>
+                <p>*  You can easily rearrange tasks or add new ones as your day progresses, adapting to changes and maintaining control over your workload.</p>
+                <p>*  Breaking down larger goals into smaller tasks on a to-do list makes it easier to achieve long-term objectives.</p>
+                <p>*  A to-do list helps you stay focused on what needs to be done, reducing distractions and increasing concentration.</p>
+            </div>
+                    </div>
+    </div>
+    
+</body>
+</html>

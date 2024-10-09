@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>To-Do List</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Permanent+Marker&display=swap');
+
+        body {
+            font-family: 'Patrick Hand', cursive;
+            background-image: url('https://cdn.pixabay.com/animation/2022/12/05/15/23/15-23-06-837_512.gif');
+            background-color: rgba(255, 255, 255, 0.5);
+            background-repeat: no-repeat;
+            background-size: cover;
+            background-attachment: fixed;
+            height: 100vh;
+            display: flex;
+            justify-content:center;
+            align-items:first baseline;
+            animation: zoomIn 1s forwards, backgroundAnimation 1s infinite;
+        }
+
+        h1 {
+            font-size: 180px; 
+            text-shadow: 
+                -2px -3px 0 #000000,  
+                6px -8px 0 #000000,
+                -2px 3px 0 #000000,
+                6px 8px 0 #000000;
+            font-family: 'Permanent Marker', cursive, sans-serif;
+            animation: fadeIn 2s forwards, colorCycle 3s infinite;
+            position: top;
+            color: rgb(255, 159, 201);
+            justify-content:center;
+            align-items:first baseline;
+        }
+
+        @keyframes zoomIn {
+            0% {
+                transform: scale(0.5);
+                opacity: 0;
+            }
+            100% {
+                transform: scale(1);
+                opacity: 1;
+            }
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: scale(0.8);
+            }
+            to {
+                opacity: 1;
+                transform: scale(1);
+            }
+        }
+    </style>
+</head>
+<body>
+    <h1 class="heading">To-Do LIST</h1>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            setTimeout(function () {
+                window.location.href = "index1.html";
+            }, 700);
+        });
+    </script>
+</body>
+</html>
